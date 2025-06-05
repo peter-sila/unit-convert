@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Weight Converter</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+   <header><h1>Weight Converter</h1></header>
+   <div class="container">
+      <h2>Convert Weight</h2>
+      <form method="POST" action="/weight">
+         <input type="number" name="value" step="any" required placeholder="Enter weight">
+         
+         <select name="from_unit" required>
+            {% for unit in units %}
+               <option value="{{ unit }}">{{ unit.capitalize() }}</option>
+            {% endfor %}
+         </select>
+         to
+         <select name="to_unit" required>
+            {% for unit in units %}
+               <option value="{{ unit }}">{{ unit.capitalize() }}</option>
+            {% endfor %}
+         </select>
+
+         <button type="submit">Convert</button>
+      </form>
+
+      {% if result is not none %}
+         <p>Converted Value: <strong>{{ result }}</strong></p>
+      {% endif %}
+
+      <p><a href="/">Back to Home</a></p>
+   </div>
+</body>
+<footer>&copy; 2025 Unit Converter</footer>
+</html>
